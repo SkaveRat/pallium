@@ -26,7 +26,7 @@ import (
 const events_table = `
 CREATE TABLE IF NOT EXISTS
 events(
-    stream_ordering INTEGER PRIMARY KEY AUTOINCREMENT,
+    stream_ordering SERIAL,
     topological_ordering INTEGER NOT NULL,
     event_id TEXT NOT NULL,
     type TEXT NOT NULL,
