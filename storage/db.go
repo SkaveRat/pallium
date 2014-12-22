@@ -20,6 +20,7 @@ import (
     "database/sql"
     "fmt"
     _ "github.com/mxk/go-sqlite/sqlite3"
+    _ "github.com/lib/pq"
 )
 
 var (
@@ -36,7 +37,7 @@ type DBI interface {
 
 func GetDatabase() *sql.DB {
     if gDB == nil {
-        if db, err := sql.Open("sqlite3", "test.db"); err != nil {
+        if db, err := sql.Open("postgres", "user=matrixorg dbname=matrixorg password=matrixorg"); err != nil {
             panic("matrix: could not open database: " + err.Error())
         } else {
             gDB = db

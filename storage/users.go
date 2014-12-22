@@ -29,7 +29,7 @@ var _ = fmt.Println
 const user_table = `
 CREATE TABLE IF NOT EXISTS
 users(
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  id BIGSERIAL PRIMARY KEY,
   user_id TEXT,
   password TEXT,
   salt TEXT,

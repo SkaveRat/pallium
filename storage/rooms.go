@@ -24,8 +24,8 @@ import (
 const rooms_table = `
 CREATE TABLE IF NOT EXISTS
 rooms (
-    event_id TEXT,
     room_id TEXT PRIMARY KEY NOT NULL,
+    event_id TEXT,
     is_public INTEGER,
     creator TEXT
 );
@@ -35,7 +35,7 @@ room_names (
     event_id TEXT NOT NULL,
     room_id TEXT NOT NULL,
     name TEXT NOT NULL,
-    CONSTRAINT uniqueness UNIQUE (room_id)
+    CONSTRAINT rn_uniqueness UNIQUE (room_id)
 );
 
 CREATE TABLE IF NOT EXISTS
@@ -43,7 +43,7 @@ room_topics (
     event_id TEXT NOT NULL,
     room_id TEXT NOT NULL,
     topic TEXT NOT NULL,
-    CONSTRAINT uniqueness UNIQUE (room_id)
+    CONSTRAINT rt_uniqueness UNIQUE (room_id)
 );
 
 CREATE TABLE IF NOT EXISTS
@@ -51,7 +51,7 @@ room_join_rules (
     event_id TEXT NOT NULL,
     room_id TEXT NOT NULL,
     join_rule TEXT NOT NULL,
-    CONSTRAINT uniqueness UNIQUE (room_id)
+    CONSTRAINT rjr_uniqueness UNIQUE (room_id)
 );
 
 CREATE TABLE IF NOT EXISTS
@@ -60,7 +60,7 @@ room_power_levels (
     room_id TEXT NOT NULL,
     user_id TEXT NOT NULL,
     level INTEGER NOT NULL,
-    CONSTRAINT uniqueness UNIQUE (room_id, user_id)
+    CONSTRAINT rpl_uniqueness UNIQUE (room_id, user_id)
 );
 
 CREATE TABLE IF NOT EXISTS
@@ -68,7 +68,7 @@ room_default_levels (
     event_id TEXT NOT NULL,
     room_id TEXT NOT NULL,
     level INTEGER NOT NULL,
-    CONSTRAINT uniqueness UNIQUE (room_id)
+    CONSTRAINT rdl_uniqueness UNIQUE (room_id)
 );
 
 CREATE TABLE IF NOT EXISTS
@@ -76,7 +76,7 @@ room_add_state_levels (
     event_id TEXT NOT NULL,
     room_id TEXT NOT NULL,
     level INTEGER NOT NULL,
-    CONSTRAINT uniqueness UNIQUE (room_id)
+    CONSTRAINT rasl_uniqueness UNIQUE (room_id)
 );
 
 CREATE TABLE IF NOT EXISTS
@@ -84,7 +84,7 @@ room_send_event_levels (
     event_id TEXT NOT NULL,
     room_id TEXT NOT NULL,
     level INTEGER NOT NULL,
-    CONSTRAINT uniqueness UNIQUE (room_id)
+    CONSTRAINT rsel_uniqueness UNIQUE (room_id)
 );
 
 CREATE TABLE IF NOT EXISTS
@@ -94,7 +94,7 @@ room_ops_levels (
     ban_level INTEGER NOT NULL,
     kick_level INTEGER NOT NULL,
     redact_level INTEGER NOT NULL,
-    CONSTRAINT uniqueness UNIQUE (room_id)
+    CONSTRAINT rol_uniqueness UNIQUE (room_id)
 );
 
 CREATE TABLE IF NOT EXISTS
@@ -103,7 +103,7 @@ room_aliases (
     room_alias TEXT NOT NULL,
     room_id TEXT NOT NULL,
     server TEXT NOT NULL,
-    CONSTRAINT uniqueness UNIQUE (room_alias)
+    CONSTRAINT ra_uniqueness UNIQUE (room_alias)
 );
 
 CREATE TABLE IF NOT EXISTS
@@ -112,7 +112,7 @@ room_memberships (
     room_id TEXT NOT NULL,
     user_id TEXT NOT NULL,
     membership TEXT,
-    CONSTRAINT uniqueness UNIQUE (room_id, user_id)
+    CONSTRAINT rm_uniqueness UNIQUE (room_id, user_id)
 )
 `
 
